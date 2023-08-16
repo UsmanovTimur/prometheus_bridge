@@ -1,0 +1,11 @@
+@startuml
+!include  https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+title Схема работы сервиса
+System(systemA, "SystemA", "Наш проект")
+System(systemB, "SystemB", "Внешний ресурс, который нам не подконтролен")
+System(prometheus_bridge, "prometheus bridge", "Промежуточный сервис по снятию метрик")
+System(prometheus, "prometheus", "Прометус")
+Rel_R(systemA, prometheus_bridge, "Запрос в систему Б")
+Rel_R(prometheus_bridge, systemB, "Запрос в систему Б")
+Rel_U(prometheus, prometheus_bridge, "Снятие метрик")
+@enduml
